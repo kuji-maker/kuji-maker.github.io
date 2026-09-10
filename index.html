@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>くじ番号メーカー | ロト6・ロト7・ミニロト・ナンバーズの数字を選ぶ</title>
+<meta name="description" content="ロト6・ロト7・ミニロト・ナンバーズ3/4・ビンゴ5・totoの数字をボタンひとつで選びます。予想はしません。当たる確率は変えられませんが「人と被りにくい並び」は選べます。無料・登録不要。">
+<link rel="canonical" href="https://kuji-maker.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="くじ番号メーカー">
+<meta property="og:description" content="ロト6・ロト7・ミニロト・ナンバーズ・ビンゴ5・totoの数字をボタンひとつで。予想はしませんが「人と被りにくい並び」は選べます。">
+<meta property="og:url" content="https://kuji-maker.github.io/">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"過去の当せん番号から次回を予想できますか？","acceptedAnswer":{"@type":"Answer","text":"できません。数字選択式宝くじの抽せんは毎回独立していて、前回までの結果が次回に影響することはありません。よく出る数字・出ていない数字といった偏りは、回数を重ねれば自然に生じるばらつきの範囲で、次回の当たりやすさとは関係がありません。本アプリも予想は一切行いません。"}},{"@type":"Question","name":"「人と被りにくく」を選ぶと当たりやすくなりますか？","acceptedAnswer":{"@type":"Answer","text":"当たる確率は1ミリも変わりません。変わるのは当たったときの分配です。数字選択式宝くじの当せん金は同じ等級の当せん口数で山分けするため、多くの人が選ぶ並びで当たると1人あたりの金額が下がります。誕生日で選ぶ人が多いので32以上の数字は相対的に空いており、そこを含む並びは分け合う人数が少なくなりやすい、という理屈です。"}},{"@type":"Question","name":"どのくじに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"ロト6・ロト7・ミニロト・ナンバーズ3・ナンバーズ4・ビンゴ5・toto・mini totoに対応しています。BIG・MEGA BIG・100円BIGはコンピュータが自動で組み合わせを決めるくじで、自分では数字を選べないため対象外です。"}},{"@type":"Question","name":"totoの数字もランダムで選んでいいのですか？","acceptedAnswer":{"@type":"Answer","text":"おすすめはしません。ロトやナンバーズと違い、サッカーの試合結果はランダムではなく、チームの力関係や順位で確率が偏ります。本アプリは対戦カードを知らないため均等に選んでいるだけで、これは根拠のある選び方ではありません。迷ったときのきっかけとしてお使いください。"}},{"@type":"Question","name":"選んだ数字は保存されますか？","acceptedAnswer":{"@type":"Answer","text":"サーバーには一切送信していません。数字はすべてお使いの端末のブラウザの中だけで作られています。選んだくじの種類と「今日の数字」に使う生年月日だけを端末内に保存し、次に開いたときの初期表示に使います。"}}]}</script>
+</head>
+<body>
+<div id="app" class="app">
+
+  <header class="app-header">
+    <p class="app-header__eyebrow">押すだけ・登録不要</p>
+    <h1 class="app-header__title">くじ番号メーカー</h1>
+    <p class="app-header__lead">ロト・ナンバーズ・ビンゴ5・totoの数字を、ボタンひとつで選びます。<br class="sp-only"><strong>予想はしません。</strong>そのかわり、選び方は正直に全部書いてあります。</p>
+  </header>
+
+  <main id="main" class="main">
+
+    <div class="card">
+      <div class="field">
+        <label for="game">くじの種類</label>
+        <select id="game" class="select"></select>
+        <p id="game-lead" class="field__help"></p>
+      </div>
+
+      <div class="field">
+        <span class="field__label">選び方</span>
+        <div class="modes" id="modes">
+          <label class="mode">
+            <input type="radio" name="mode" value="random" checked>
+            <span class="mode__body">
+              <b>おまかせ</b>
+              <small>完全にランダム。いちばん正直な選び方です</small>
+            </span>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="unpopular">
+            <span class="mode__body">
+              <b>人と被りにくく</b>
+              <small>当たる確率は同じ。当たったとき分け合う人数を減らす狙い</small>
+            </span>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="lucky">
+            <span class="mode__body">
+              <b>今日の数字</b>
+              <small>生年月日と今日の日付から。日が変わるまで同じ数字が出ます</small>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="birth-field" hidden>
+        <label for="byear">生年月日</label>
+        <div class="date-row">
+          <select id="byear" class="select" aria-label="年"></select>
+          <select id="bmonth" class="select" aria-label="月"></select>
+          <select id="bday" class="select" aria-label="日"></select>
+        </div>
+        <p class="field__help">端末の中だけに保存します。外部には送りません。</p>
+      </div>
+
+      <div class="field">
+        <label for="count">口数</label>
+        <select id="count" class="select">
+          <option value="1">1口</option>
+          <option value="3" selected>3口</option>
+          <option value="5">5口</option>
+          <option value="10">10口</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn btn--primary btn--large" id="btn-go">数字を選ぶ</button>
+      <p class="odds" id="odds"></p>
+    </div>
+
+    <section id="result" hidden aria-live="polite">
+      <div class="card card--result">
+        <div class="result__head">
+          <h2 class="card__title" id="result-title">選んだ数字</h2>
+          <span class="result__mode" id="result-mode"></span>
+        </div>
+        <div id="sets"></div>
+        <div class="btns">
+          <button type="button" class="btn btn--primary" id="btn-again">もう一度選ぶ</button>
+          <button type="button" class="btn btn--sub" id="btn-copy">コピー</button>
+        </div>
+        <p class="disclaimer" id="buy-note"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <section class="article">
+
+    <div class="card card--article">
+      <h2>先に、いちばん大事なこと</h2>
+      <p><strong>過去の出目から次回を当てることはできません。</strong>これは「まだ法則が見つかっていない」という話ではなく、抽せんの仕組みそのものです。ロトの抽せんは毎回、同じ球を同じ機械で回します。前回何が出たかを機械は覚えていません。</p>
+      <p>「この数字は最近よく出ている」「この数字はしばらく出ていない」——そういう偏りは<strong>必ず生じます</strong>。コインを100回投げれば表が50回ちょうどになることの方が珍しいのと同じで、回数が有限なら偏るのが自然です。その偏りは、次回の出やすさとは何の関係もありません。</p>
+      <p>なので、このアプリは予想をしません。やっているのは<strong>「数字を選ぶ」だけ</strong>です。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>ただし、ひとつだけ本当に効くことがあります</h2>
+      <p>当たる確率は変えられません。でも<strong>当たったときの取り分は変えられます。</strong></p>
+      <p>数字選択式宝くじの当せん金は、同じ等級の当せん口数で山分けする仕組みです。1等が1人なら全額、10人なら10分の1になります。つまり<strong>「みんなが選ぶ並び」で当たると、手に入る金額が下がる</strong>ということです。</p>
+      <p>そして、みんなが選ぶ並びには はっきりした傾向があります。</p>
+      <ul>
+        <li><strong>誕生日</strong> — 圧倒的にこれ。日は1〜31、月は1〜12なので、<strong>32以上の数字が相対的に空きます</strong></li>
+        <li><strong>連番を避ける</strong> — 「3,4」のような並びは当たらなそうに見えるので避けられがち。でも実際には普通に出ます</li>
+        <li><strong>マークシート上の形</strong> — 等間隔・斜め・十字など、きれいな形は選ぶ人が多くなります</li>
+        <li><strong>ゾロ目と階段</strong> — ナンバーズの777や1234は、毎回たくさんの人が買います</li>
+      </ul>
+      <p>「人と被りにくく」を選ぶと、この逆を狙った並びを作ります。<strong>当たりやすくはなりません。</strong>当たったときに分け合う人数が減るかもしれない、というだけです。そのうえ、そもそも当たらないことがほとんどです。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>対応しているくじ</h2>
+      <div class="table-scroll">
+        <table class="spec" id="spec-table"><tbody></tbody></table>
+      </div>
+      <p class="muted" id="not-supported"></p>
+      <p class="muted">抽せん日・当せん金・購入方法は変わることがあります。正確な情報は<a href="https://www.mizuhobank.co.jp/takarakuji/" target="_blank" rel="noopener">みずほ銀行の宝くじページ</a>と<a href="https://www.toto-dream.com/" target="_blank" rel="noopener">スポーツくじ公式</a>でご確認ください。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>totoだけは事情が違います</h2>
+      <p>ロトやナンバーズは機械が球を選ぶので、どの数字も同じ確率で出ます。でも<strong>サッカーの試合結果はランダムではありません。</strong>強いチームが勝つ確率は高く、引き分けは3分の1より少なめに出ます。</p>
+      <p>このアプリは対戦カードを知らないので、1・0・2を均等に選んでいるだけです。<strong>これは根拠のある選び方ではありません。</strong>試合を見て決めた方がずっとましです。迷ったときのきっかけ程度に使ってください。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>よくある質問</h2>
+      <details class="faq-item">
+        <summary>過去の当せん番号から次回を予想できますか？</summary>
+        <p>できません。抽せんは毎回独立していて、前回までの結果が次回に影響することはありません。よく出る数字・出ていない数字といった偏りは、回数を重ねれば自然に生じるばらつきの範囲で、次回の当たりやすさとは関係がありません。本アプリも予想は一切行いません。</p>
+      </details>
+      <details class="faq-item">
+        <summary>「人と被りにくく」を選ぶと当たりやすくなりますか？</summary>
+        <p>当たる確率は1ミリも変わりません。変わるのは当たったときの分配です。当せん金は同じ等級の当せん口数で山分けするため、多くの人が選ぶ並びで当たると1人あたりの金額が下がります。誕生日で選ぶ人が多いので32以上の数字は相対的に空いており、そこを含む並びは分け合う人数が少なくなりやすい、という理屈です。</p>
+      </details>
+      <details class="faq-item">
+        <summary>どのくじに対応していますか？</summary>
+        <p>ロト6・ロト7・ミニロト・ナンバーズ3・ナンバーズ4・ビンゴ5・toto・mini totoに対応しています。BIG・MEGA BIG・100円BIGはコンピュータが自動で組み合わせを決めるくじで、自分では数字を選べないため対象外です。</p>
+      </details>
+      <details class="faq-item">
+        <summary>totoの数字もランダムで選んでいいのですか？</summary>
+        <p>おすすめはしません。ロトやナンバーズと違い、サッカーの試合結果はランダムではなく、チームの力関係や順位で確率が偏ります。本アプリは対戦カードを知らないため均等に選んでいるだけで、これは根拠のある選び方ではありません。迷ったときのきっかけとしてお使いください。</p>
+      </details>
+      <details class="faq-item">
+        <summary>選んだ数字は保存されますか？</summary>
+        <p>サーバーには一切送信していません。数字はすべてお使いの端末のブラウザの中だけで作られています。選んだくじの種類と「今日の数字」に使う生年月日だけを端末内に保存し、次に開いたときの初期表示に使います。</p>
+      </details>
+      <details class="faq-item">
+        <summary>乱数はどうやって作っていますか？</summary>
+        <p>ブラウザに用意されている暗号用の乱数(<code>crypto.getRandomValues</code>)を使っています。「今日の数字」だけは、生年月日と日付から決まる再現できる乱数を使っているため、同じ日のうちは何度押しても同じ数字が出ます。</p>
+      </details>
+    </div>
+
+  </section>
+
+  <footer class="app-footer">
+    <p><strong>宝くじは、買ったお金のうち当せん金として戻る割合が半分に満たない遊びです。</strong>余ったお金の範囲で、生活に影響しない金額を楽しんでください。</p>
+    <p>本サイトは個人が趣味で運営しています。当せんを保証するものではなく、購入を勧めるものでもありません。宝くじの購入は満20歳以上（未成年者への販売は行われていません）。</p>
+    <p>ギャンブルがやめられずお困りの方へ: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000070789.html" target="_blank" rel="noopener">厚生労働省 ギャンブル依存症でお困りの方へ</a></p>
+  </footer>
+
+</div>
+
+<script src="js/games.js"></script>
+<script src="js/generate.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

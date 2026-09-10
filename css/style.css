@@ -1,0 +1,288 @@
+/*
+ * くじ番号メーカー。
+ * HAKONIWA LAB の各アプリとは別サイトなので、配色もはっきり変えている
+ * (深い緑＋金)。骨格の考え方だけ揃えてある。
+ */
+
+:root {
+  --bg: #10241c;
+  --surface: #173327;
+  --surface-2: #1e4232;
+  --border: #2d5a45;
+  --text: #eaf3ee;
+  --muted: #9dbcac;
+  --primary: #d9a441;
+  --primary-hover: #e8b658;
+  --on-primary: #14251c;
+  --accent: #6fd39b;
+  --warn-bg: #3a2a18;
+  --warn-text: #e6b877;
+  --radius: 12px;
+  --radius-sm: 6px;
+  --max: 660px;
+}
+
+/* 明るい環境では明るい配色にする */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f2f5f1;
+    --surface: #ffffff;
+    --surface-2: #eaf0ea;
+    --border: #cfdcd3;
+    --text: #17251d;
+    --muted: #5d7568;
+    --primary: #1f6b47;
+    --primary-hover: #17563a;
+    --on-primary: #ffffff;
+    --accent: #1f6b47;
+    --warn-bg: #fdf2e0;
+    --warn-text: #8a5a1a;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: var(--primary); }
+
+.app { max-width: var(--max); margin: 0 auto; padding: 24px 16px 48px; }
+
+/* ---- ヘッダー ---- */
+.app-header { text-align: center; margin-bottom: 20px; }
+.app-header__eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: 2px 12px;
+  margin: 0 0 10px;
+}
+.app-header__title { font-size: 1.8rem; font-weight: 800; margin: 0 0 10px; letter-spacing: .02em; }
+.app-header__lead { font-size: 0.9rem; color: var(--muted); margin: 0; }
+.sp-only { display: inline; }
+
+/* ---- カード ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  margin-bottom: 16px;
+}
+.card__title { font-size: 1rem; margin: 0; }
+
+/* ---- フォーム ---- */
+.field { margin-bottom: 18px; }
+.field > label, .field__label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field__help { font-size: 0.78rem; color: var(--muted); margin: 6px 0 0; }
+.select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+.date-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 8px; }
+
+/* 選び方 */
+.modes { display: grid; gap: 8px; }
+.mode { display: block; cursor: pointer; }
+.mode input { position: absolute; opacity: 0; pointer-events: none; }
+.mode__body {
+  display: block;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  padding: 12px 14px;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.mode__body b { display: block; font-size: 0.95rem; }
+.mode__body small { display: block; font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+.mode input:checked + .mode__body { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, var(--surface-2)); }
+.mode input:focus-visible + .mode__body { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* ---- ボタン ---- */
+.btn {
+  appearance: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  cursor: pointer;
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn:hover { background: var(--primary-hover); }
+.btn--sub { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn--sub:hover { background: color-mix(in srgb, var(--primary) 14%, transparent); }
+.btn--large { width: 100%; padding: 15px 20px; font-size: 1.05rem; }
+.btns { display: flex; gap: 8px; margin-top: 16px; }
+.btns .btn { flex: 1; }
+
+.odds { font-size: 0.78rem; color: var(--muted); text-align: center; margin: 12px 0 0; }
+
+/* ---- 結果 ---- */
+.card--result { border-color: var(--primary); }
+.result__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+.result__mode {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+.set { border-top: 1px solid var(--border); padding: 14px 0 12px; }
+.set:first-child { border-top: 0; padding-top: 0; }
+.set__no { font-size: 0.72rem; color: var(--muted); font-weight: 700; }
+
+/* 数字の玉 */
+.balls { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 0; }
+.ball {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+/* 32以上は「空いている番号」なので色を変えて分かるようにする */
+.ball--high { background: var(--accent); }
+
+/* ナンバーズの桁 */
+.digits { display: flex; gap: 6px; margin-top: 6px; }
+.digit {
+  width: 46px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ビンゴ5の3×3 */
+.bingo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; max-width: 240px; }
+.bingo__cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.bingo__cell--free { background: var(--surface-2); color: var(--muted); font-size: 0.72rem; border: 1.5px dashed var(--border); }
+
+/* totoの1/0/2 */
+.marks { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.mark {
+  width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  padding: 3px 0 5px;
+  overflow: hidden;
+}
+/* 試合番号は幅が狭いので数字だけ。「第10試合」は折り返して隣に重なる */
+.mark__i { font-size: 0.6rem; line-height: 1.2; color: var(--muted); }
+.mark__v { font-size: 1.05rem; font-weight: 800; line-height: 1.2; }
+
+.set__meta { font-size: 0.76rem; color: var(--muted); margin: 10px 0 0; }
+.set__notes { list-style: none; padding: 0; margin: 8px 0 0; font-size: 0.78rem; }
+.set__notes li { padding-left: 1.4em; position: relative; color: var(--muted); }
+.set__notes li::before { position: absolute; left: 0; }
+.set__notes li.is-good::before { content: "○"; color: var(--accent); }
+.set__notes li.is-bad::before { content: "×"; color: var(--warn-text); }
+
+.disclaimer {
+  font-size: 0.76rem;
+  color: var(--warn-text);
+  background: var(--warn-bg);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin: 14px 0 0;
+}
+
+/* ---- 解説 ---- */
+.article { margin-top: 28px; }
+.card--article h2 { font-size: 1.05rem; margin: 0 0 12px; }
+.card--article p { font-size: 0.9rem; margin: 0 0 12px; }
+.card--article p:last-child { margin-bottom: 0; }
+.card--article ul { font-size: 0.9rem; margin: 0 0 12px; padding-left: 1.3em; }
+.card--article li { margin-bottom: 6px; }
+.muted { color: var(--muted); font-size: 0.8rem; }
+
+/* 表は本文を横に動かさず、枠の中だけでスクロールさせる */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 12px; }
+.spec { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 420px; }
+.spec th, .spec td { text-align: left; padding: 9px 10px 9px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+.spec tr:last-child th, .spec tr:last-child td { border-bottom: 0; }
+.spec th { white-space: nowrap; font-weight: 700; }
+.spec td { color: var(--muted); }
+.spec .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.faq-item { border-bottom: 1px dashed var(--border); padding: 12px 0; }
+.faq-item:first-of-type { padding-top: 0; }
+.faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+.faq-item summary { cursor: pointer; font-weight: 700; font-size: 0.9rem; }
+.faq-item summary::marker { color: var(--primary); }
+.faq-item p { margin: 8px 0 0; font-size: 0.85rem; color: var(--muted); }
+code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-size: 0.85em; }
+
+/* ---- フッター ---- */
+.app-footer {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.app-footer p { margin: 0 0 8px; }
+
+@media (min-width: 640px) {
+  .app-header__title { font-size: 2.1rem; }
+  .sp-only { display: none; }
+}
