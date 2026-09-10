@@ -286,3 +286,24 @@ code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-
   .app-header__title { font-size: 2.1rem; }
   .sp-only { display: none; }
 }
+
+/* --- 解説記事のページ --- */
+
+.crumb { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+.crumb a { color: var(--muted); }
+
+.art-header { margin-bottom: 18px; }
+.art-title { font-size: 1.45rem; font-weight: 800; line-height: 1.5; margin: 0 0 8px; }
+.art-sub { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+/* 誤解されると困る内容を置くカード。枠と地の色で目立たせる */
+.card--warn { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 7%, var(--surface)); }
+
+.card--article h3 { font-size: 0.95rem; margin: 16px 0 8px; }
+/* 記事内のボタンは a タグなので、行として置く */
+.card--article .btn { display: inline-block; text-decoration: none; margin-top: 4px; }
+.card--article .spec th { color: var(--text); }
+
+@media (min-width: 640px) {
+  .art-title { font-size: 1.8rem; }
+}
