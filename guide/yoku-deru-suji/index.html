@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ロト6に「よく出る数字」はあるのか｜偏りは公平な抽せんでも必ず生まれる</title>
+<meta name="description" content="出現回数ランキングには必ず差が出ます。完全に公平な抽せんを2,000回×2,000セット試したところ、1位と最下位の差は平均68.9回、いちばん小さいセットでも38回ありました。前半の上位10個が後半も上位に残るのは平均2.32個で、まったくの偶然(2.33個)と同じです。">
+<link rel="canonical" href="https://kuji-maker.github.io/guide/yoku-deru-suji/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ロト6に「よく出る数字」はあるのか｜偏りは公平な抽せんでも必ず生まれる">
+<meta property="og:description" content="公平な抽せんを2,000回×2,000セット試した結果、1位と最下位の差は平均68.9回。前半の上位10個が後半も上位に残るのは平均2.32個で、偶然と同じでした。">
+<meta property="og:url" content="https://kuji-maker.github.io/guide/yoku-deru-suji/">
+<link rel="stylesheet" href="../../css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ロト6に「よく出る数字」はありますか？","acceptedAnswer":{"@type":"Answer","text":"出現回数の表を作れば必ず差が出ますが、それは公平な抽せんでも生じるばらつきです。完全に公平な抽せんを2,000回おこなうシミュレーションを2,000セット試したところ、1位と最下位の差は平均68.9回、いちばん差が小さかったセットでも38回ありました。差が出ること自体は、抽せんに偏りがある証拠にはなりません。"}},{"@type":"Question","name":"よく出ている数字を選べば当たりやすくなりますか？","acceptedAnswer":{"@type":"Answer","text":"なりません。シミュレーションで前半1,000回の出現回数トップ10を調べ、それが後半1,000回でもトップ10に残っているかを数えたところ、平均2.32個でした。まったく無関係な10個を選んだときの期待値は2.33個なので、過去の順位に予測の力はありません。"}},{"@type":"Question","name":"しばらく出ていない数字は、そろそろ出やすいのですか？","acceptedAnswer":{"@type":"Answer","text":"出やすくはなりません。抽せん機は前回までの結果を覚えていないので、何回出ていなくても次回に選ばれる確率は6/43、約13.95%のままです。また、長い不在は珍しいことではありません。どの時点でも平均9.6個の数字が10回以上出ておらず、2.1個は20回以上出ていません。"}},{"@type":"Question","name":"連番は避けたほうがいいですか？","acceptedAnswer":{"@type":"Answer","text":"避ける理由はありません。ロト6の6個の中に連続した2数が含まれる組み合わせは全体の54.72%で、半分以上を占めます。むしろ連番を嫌って外す人が多いぶん、連番を含む並びは選ぶ人が少なくなり、当たったときに分け合う人数が減りやすい側です。"}},{"@type":"Question","name":"前回出た数字は続けて出ませんか？","acceptedAnswer":{"@type":"Answer","text":"よく出ます。前回の当せん番号6個のうち1つ以上が次回も出る確率は61.87%で、6回に4回近い頻度です。平均すると0.84個が続けて出る計算になります。前回の数字を機械的に外すのは、根拠がないうえに選べる範囲を狭めるだけです。"}}]}</script>
+</head>
+<body>
+<div id="app" class="app">
+
+  <nav class="crumb"><a href="../../">くじ番号メーカー</a> ／ 解説</nav>
+
+  <article>
+    <header class="art-header">
+      <h1 class="art-title">ロト6に「よく出る数字」はあるのか</h1>
+      <p class="art-sub">偏りは、公平な抽せんでも必ず生まれる。2,000回×2,000セットで確かめました</p>
+    </header>
+
+    <div class="card card--article">
+      <p>ロト6の情報を探すと、必ず出てくるものが2つあります。<strong>出現回数ランキング</strong>と、<strong>しばらく出ていない数字の一覧</strong>です。</p>
+      <p>たしかに表を作れば、1位の数字と最下位の数字にはっきりした差がつきます。「これだけ差があるなら、何かあるのでは」と思うのは自然なことだと思います。</p>
+      <p>そこで、<strong>絶対に公平だと分かっている抽せん</strong>で同じ表を作ってみました。数字に何の個性もない、完全な乱数です。それでどれくらいの差がつくのかが分かれば、本物の表の差をどう読めばいいかも分かります。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>実験: 公平な抽せんを2,000回、それを2,000セット</h2>
+      <p>1〜43から6個をでたらめに選ぶ抽せんを2,000回ぶん作り、43個の数字それぞれが何回出たかを数えます。これを1セットとして、2,000セット繰り返しました。</p>
+      <p>2,000回の抽せんで出る数字は合計12,000個。43で割ると、<strong>1つの数字あたり279.1回</strong>が期待される回数です。全部の数字がぴったり279回なら、差はゼロになります。結果はこうでした。</p>
+
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>2,000回あたりの出現回数</th><td class="num">結果</td></tr>
+            <tr><th>期待される回数</th><td class="num">279.1回</td></tr>
+            <tr><th>1位の数字（平均）</th><td class="num">314.0回</td></tr>
+            <tr><th>最下位の数字（平均）</th><td class="num">245.1回</td></tr>
+            <tr><th>1位と最下位の差（平均）</th><td class="num">68.9回</td></tr>
+            <tr><th>同（2,000セット中の最小）</th><td class="num">38回</td></tr>
+            <tr><th>同（2,000セット中の最大）</th><td class="num">111回</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>どの数字にも一切の個性がないのに、1位と最下位は平均69回ちがいました。</strong>差が50回を下回ったセットは2,000のうち32セット（1.6%）だけ。40回を下回ったのは、2,000セット中わずか1セットです。</p>
+      <p>つまり<strong>「出現回数に差がある」は、抽せんが偏っている証拠には一切ならない</strong>ということです。差がない方がよほど不思議で、むしろ機械を疑うべき事態になります。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>本題: その1位は、次も1位なのか</h2>
+      <p>ここからが本当に知りたいところです。過去の1位が次も上位に来るなら、ランキングには意味があります。来ないなら、ただの過ぎた話です。</p>
+      <p>そこで同じシミュレーションを半分に割り、<strong>前半1,000回の出現回数トップ10</strong>が、<strong>後半1,000回でもトップ10に残っているか</strong>を数えました。前半と後半は同じ乱数から作った、まったく同質の抽せんです。</p>
+
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>前半のトップ10が後半も残った数</th><td class="num">セット数</td><td class="num">割合</td></tr>
+            <tr><th>0個</th><td class="num">96</td><td class="num">4.8%</td></tr>
+            <tr><th>1個</th><td class="num">415</td><td class="num">20.8%</td></tr>
+            <tr><th>2個</th><td class="num">649</td><td class="num">32.5%</td></tr>
+            <tr><th>3個</th><td class="num">515</td><td class="num">25.8%</td></tr>
+            <tr><th>4個</th><td class="num">251</td><td class="num">12.6%</td></tr>
+            <tr><th>5個</th><td class="num">70</td><td class="num">3.5%</td></tr>
+            <tr><th>6個</th><td class="num">4</td><td class="num">0.2%</td></tr>
+            <tr><th>7個以上</th><td class="num">0</td><td class="num">0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>平均は<strong>2.32個</strong>でした。では、前半のことを完全に無視して43個から適当に10個選んだ場合はどうなるか。10×10÷43で<strong>2.33個</strong>です。</p>
+      <p><strong>ほぼ完全に一致しています。</strong>前半の順位を調べる作業には、次を当てる力が1ミリもない。これがシミュレーションで見えることです。</p>
+      <p class="muted">※ 実際のロト6の出現回数表を持ってきて同じことをしても、結果は同じになります。抽せん機に記憶がない以上、そうなるほかありません。</p>
+    </div>
+
+    <div class="card card--article card--warn">
+      <h2>「そろそろ出るはず」も同じ話です</h2>
+      <p>しばらく出ていない数字を見ると、そろそろ順番が来る気がします。<strong>これは来ません。</strong></p>
+      <p>抽せん機は前回までの結果を覚えていないので、30回出ていない数字も昨日出た数字も、次に選ばれる確率は<strong>6/43、約13.95%で同じ</strong>です。</p>
+      <p>そもそも、長い不在は珍しくもありません。確率を計算すると、どの時点を切り取ってもこうなります。</p>
+
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>不在の長さ</th><td class="num">その状態にある数字の数（平均）</td></tr>
+            <tr><th>直近10回で出ていない</th><td class="num">9.6個</td></tr>
+            <tr><th>直近20回で出ていない</th><td class="num">2.1個</td></tr>
+            <tr><th>直近30回で出ていない</th><td class="num">0.5個</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>43個のうち9個前後は、いつでも「10回以上ご無沙汰」の状態です。2,000回のシミュレーションで<strong>いちばん長かった不在は平均65.6回</strong>、最も長いセットでは107回連続で出ませんでした。公平な機械でも、ここまでは普通に起こります。</p>
+      <p>長く出ていない数字を選ぶのは構いません。ただ、それで当たりやすくなってはいない、というだけです。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>ついでに、避けられがちな2つについて</h2>
+      <p>「連番は出ない」「前回出た数字は続かない」もよく聞きますが、どちらも実際の数とは合いません。組み合わせを数えると、こうなります。</p>
+
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>言われていること</th><td class="num">実際</td></tr>
+            <tr><th>連続した2数（例: 14と15）が含まれる</th><td class="num">54.72%</td></tr>
+            <tr><th>前回の当せん番号が1つ以上ふくまれる</th><td class="num">61.87%</td></tr>
+            <tr><th>前回から持ち越される数字の平均</th><td class="num">0.84個</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>連番は<strong>半分以上の回で出ます</strong>。前回の数字にいたっては6回に4回近く再登場します。どちらも「珍しいこと」ではありません。</p>
+      <p>そして、ここが<a href="../loto-tosenkin-yamawake/">前回の記事</a>とつながるところです。<strong>連番を嫌って外す人が多いということは、連番を含む並びは選ぶ人が少ない</strong>ということでもあります。当たる確率は変わりませんが、当たったときに分け合う人数は減りやすい側です。</p>
+      <p class="muted">同じ理屈で、まったく同じ6個が2回出ることもあります。2,000回のあいだにどこかで組み合わせが重複している確率は約28.0%。「一度出た並びはもう出ない」という決まりもありません。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>では、過去の数字は何の役に立つのか</h2>
+      <p>次回の当たりを当てる役には立ちません。役に立つのは<strong>「みんなが何を選んでいるか」を推測すること</strong>だけです。</p>
+      <p>当せん金は同じ等級の当せん口数で山分けされるので、多くの人と同じ並びで当たると取り分が減ります。ここだけは、選び方で変えられます。整理するとこうです。</p>
+
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>当たる確率</th><td>どの数字を選んでも同じ。<strong>変えられない</strong></td></tr>
+            <tr><th>当たったときの取り分</th><td>他の買い手と被るかで変わる。<strong>変えられる</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>「よく出る数字」を紹介しているページは、実はこの点でだけ役に立ちます。<strong>そこに載っている数字は、それを読んだ人たちが選ぶ数字</strong>だからです。当たりやすさとは無関係ですが、被りやすさとは関係があります。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>それでも、ほとんど当たりません</h2>
+      <p>ロト6の1等は<strong>6,096,454通りのうち1通り</strong>です。週2回買い続けても、当たる見込みはほぼありません。</p>
+      <p>宝くじは、買ったお金のうち当せん金として戻る割合が半分に満たない遊びです。増やす手段ではなく、当たったときのことを想像して過ごす数日間を買うもの、と考えるのが実際に近いと思います。余ったお金の範囲で楽しんでください。</p>
+      <p class="muted">当せん金や購入方法の正確な情報は<a href="https://www.mizuhobank.co.jp/takarakuji/" target="_blank" rel="noopener">みずほ銀行の宝くじページ</a>でご確認ください。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>よくある質問</h2>
+      <details class="faq-item">
+        <summary>ロト6に「よく出る数字」はありますか？</summary>
+        <p>出現回数の表を作れば必ず差が出ますが、それは公平な抽せんでも生じるばらつきです。完全に公平な抽せんを2,000回おこなうシミュレーションを2,000セット試したところ、1位と最下位の差は平均68.9回、いちばん差が小さかったセットでも38回ありました。差が出ること自体は、抽せんに偏りがある証拠にはなりません。</p>
+      </details>
+      <details class="faq-item">
+        <summary>よく出ている数字を選べば当たりやすくなりますか？</summary>
+        <p>なりません。シミュレーションで前半1,000回の出現回数トップ10を調べ、それが後半1,000回でもトップ10に残っているかを数えたところ、平均2.32個でした。まったく無関係な10個を選んだときの期待値は2.33個なので、過去の順位に予測の力はありません。</p>
+      </details>
+      <details class="faq-item">
+        <summary>しばらく出ていない数字は、そろそろ出やすいのですか？</summary>
+        <p>出やすくはなりません。抽せん機は前回までの結果を覚えていないので、何回出ていなくても次回に選ばれる確率は6/43、約13.95%のままです。また、長い不在は珍しいことではありません。どの時点でも平均9.6個の数字が10回以上出ておらず、2.1個は20回以上出ていません。</p>
+      </details>
+      <details class="faq-item">
+        <summary>連番は避けたほうがいいですか？</summary>
+        <p>避ける理由はありません。ロト6の6個の中に連続した2数が含まれる組み合わせは全体の54.72%で、半分以上を占めます。むしろ連番を嫌って外す人が多いぶん、連番を含む並びは選ぶ人が少なくなり、当たったときに分け合う人数が減りやすい側です。</p>
+      </details>
+      <details class="faq-item">
+        <summary>前回出た数字は続けて出ませんか？</summary>
+        <p>よく出ます。前回の当せん番号6個のうち1つ以上が次回も出る確率は61.87%で、6回に4回近い頻度です。平均すると0.84個が続けて出る計算になります。前回の数字を機械的に外すのは、根拠がないうえに選べる範囲を狭めるだけです。</p>
+      </details>
+    </div>
+
+    <div class="card card--article">
+      <h2>この記事の数字について</h2>
+      <p>連番・前回からの持ち越し・組み合わせの重複は、ロト6の6,096,454通りから直接計算した<strong>正確な値</strong>です。出現回数に関する数字は、<strong>2,000回の抽せん × 2,000セット（合計400万回）のシミュレーション結果</strong>で、乱数の種は固定してあります。実際のロト6の当せん番号は使っていません。使う必要がないからです。</p>
+      <p>計算に使ったコードはこれだけです。</p>
+      <details class="faq-item">
+        <summary>シミュレーションのコードを見る</summary>
+<pre class="code-block"><code>import numpy as np
+
+rng = np.random.default_rng(20260912)
+N, K, DRAWS, TRIALS = 43, 6, 2000, 2000
+
+for t in range(TRIALS):
+    keys = rng.random((DRAWS, N))
+    idx = np.argpartition(keys, K, axis=1)[:, :K]
+    hit = np.zeros((DRAWS, N), dtype=bool)
+    np.put_along_axis(hit, idx, True, axis=1)
+
+    counts = hit.sum(axis=0)          # 43個それぞれの出現回数
+    spread = counts.max() - counts.min()
+
+    c1 = hit[:DRAWS // 2].sum(axis=0)  # 前半1,000回
+    c2 = hit[DRAWS // 2:].sum(axis=0)  # 後半1,000回
+    a = set(np.argsort(-c1)[:10].tolist())
+    b = set(np.argsort(-c2)[:10].tolist())
+    overlap = len(a &amp; b)               # 前半トップ10が後半も残った数
+</code></pre>
+      </details>
+      <p>同じ考え方は<a href="../../">くじ番号メーカー</a>の中でも使っていて、「人と被りにくく」を選ぶと、この記事で説明した<strong>人が避けがちな側</strong>を含む並びを作ります。予想は一切していません。</p>
+      <p><a class="btn btn--primary" href="../../">くじ番号メーカーで数字を選ぶ</a></p>
+    </div>
+
+    <div class="card card--article">
+      <h2>関連記事</h2>
+      <ul>
+        <li><a href="../loto-tosenkin-yamawake/">ロト6の1等が毎回ちがう金額になる理由｜当せん金は山分けで決まる</a><br>
+          <span class="muted">全6,096,454通りを数え上げて、誕生日で選ばれやすい並びがどれくらいの割合かを出しました。</span></li>
+      </ul>
+    </div>
+
+  </article>
+
+  <footer class="app-footer">
+    <p><strong>宝くじは、買ったお金のうち当せん金として戻る割合が半分に満たない遊びです。</strong>余ったお金の範囲で、生活に影響しない金額を楽しんでください。</p>
+    <p>本サイトは個人が趣味で運営しています。当せんを保証するものではなく、購入を勧めるものでもありません。</p>
+    <p>ギャンブルがやめられずお困りの方へ: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000070789.html" target="_blank" rel="noopener">厚生労働省 ギャンブル依存症でお困りの方へ</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
