@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ハロウィンジャンボ2026の吉日カレンダー｜発売31日のうち14日が吉日</title>
+<meta name="description" content="ハロウィンジャンボ(第1126回)の発売は9月16日〜10月16日、抽せんは10月26日。この31日間の一粒万倍日・天赦日・寅の日・巳の日・大安を暦から計算したところ、吉日は14日ありました。2つ重なるのは9月26日と10月1日の2日だけで、その10月1日は六曜では仏滅です。">
+<link rel="canonical" href="https://kuji-maker.github.io/guide/halloween-jumbo-kichijitsu/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ハロウィンジャンボ2026の吉日カレンダー｜発売31日のうち14日が吉日">
+<meta property="og:description" content="発売9/16〜10/16の吉日を暦から計算。吉日は14日で、2つ重なるのは9/26と10/1だけ。その10/1は仏滅でもあります。">
+<meta property="og:url" content="https://kuji-maker.github.io/guide/halloween-jumbo-kichijitsu/">
+<link rel="stylesheet" href="../../css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ハロウィンジャンボ2026の発売期間と抽せん日はいつですか？","acceptedAnswer":{"@type":"Answer","text":"第1126回ハロウィンジャンボ宝くじの発売期間は2026年9月16日から10月16日まで、抽せん日は10月26日です。1枚300円で、1等・前後賞合わせて4億円。同時発売のハロウィンジャンボミニ(第1127回)も発売期間・抽せん日は同じで、1等・前後賞合わせて4,000万円です。"}},{"@type":"Question","name":"発売期間中の一粒万倍日はいつですか？","acceptedAnswer":{"@type":"Answer","text":"9月19日、9月26日、10月1日、10月11日、10月14日の5日です。このうち9月26日は大安と重なり、10月1日は天赦日と重なります。ただし9月19日と10月1日は仏滅、10月11日は不成就日でもあります。"}},{"@type":"Question","name":"「天赦日と一粒万倍日が重なる最強開運日」は発売期間中にありますか？","acceptedAnswer":{"@type":"Answer","text":"10月1日が天赦日と一粒万倍日の重なる日です。ただし同じ10月1日は六曜では仏滅にあたります。暦注は種類ごとに別々の規則で決まるため、同じ日が吉とも凶とも呼ばれることは珍しくありません。発売期間中の吉日14日のうち、7日は凶日とも重なっていました。"}},{"@type":"Question","name":"吉日に買うと当たりやすくなりますか？","acceptedAnswer":{"@type":"Answer","text":"なりません。ジャンボ宝くじの当せん番号は抽せん日の10月26日に1回だけ決まり、購入した日は抽せんに一切関与しません。買う日を選ぶことで当せん確率が変わるという根拠はありません。また発売31日間のうち14日(45.2%)が何らかの吉日なので、吉日を選ぶという条件はほとんど絞り込みにもなっていません。"}},{"@type":"Question","name":"六曜が10月10日の先勝から10月11日で先負に飛んでいるのはなぜですか？","acceptedAnswer":{"@type":"Answer","text":"六曜は旧暦の月が変わるところでリセットされるためです。10月11日は旧暦9月1日にあたり、旧暦3月と9月の1日は必ず先負から始まります。そのため先勝→友引→先負という順番が途中で飛びます。計算違いではありません。"}}]}</script>
+<style>
+.cal th, .cal td { padding: 7px 9px; border: 1px solid var(--line, #d8d2c4); text-align: left; font-size: 0.9rem; }
+.cal { width: 100%; border-collapse: collapse; margin: 14px 0; }
+.cal thead th { background: rgba(0,0,0,0.04); }
+.cal td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cal td.num small { font-weight: normal; opacity: 0.75; margin-left: 2px; }
+.cal td.bad { color: #8a4b4b; font-size: 0.82rem; }
+.cal tr.hit td { background: rgba(214, 158, 46, 0.09); }
+.cal tr.hit--multi td { background: rgba(214, 158, 46, 0.22); font-weight: 600; }
+.table-scroll .cal { min-width: 520px; }
+.lead-box { border-left: 3px solid var(--accent, #c8973f); padding: 2px 0 2px 14px; margin: 14px 0; }
+@media (max-width: 480px) {
+  /* 干支の列を隠して、日付・六曜・吉日・凶日の4列を画面内に収める */
+  .cal th:nth-child(3), .cal td:nth-child(3) { display: none; }
+  .table-scroll .cal { min-width: 0; }
+  .cal th, .cal td { padding: 7px 5px; font-size: 0.84rem; }
+  .cal td.bad { font-size: 0.76rem; }
+  .cal th:nth-child(2), .cal td:nth-child(2) { white-space: nowrap; }
+}
+</style>
+</head>
+<body>
+<div id="app" class="app">
+
+  <nav class="crumb"><a href="../../">くじ番号メーカー</a> ／ 解説</nav>
+
+  <article>
+    <header class="art-header">
+      <h1 class="art-title">ハロウィンジャンボ2026の吉日カレンダー</h1>
+      <p class="art-sub">発売31日のうち14日が吉日でした。暦は全部こちらで計算しています</p>
+    </header>
+
+    <div class="card card--article">
+      <p>2026年のハロウィンジャンボ宝くじ（第1126回）は、<strong>9月16日から10月16日まで</strong>の発売、<strong>抽せんは10月26日</strong>です。1枚300円で、1等・前後賞合わせて4億円。同時発売のハロウィンジャンボミニ（第1127回）も日程は同じで、1等・前後賞合わせて4,000万円です。</p>
+      <p>「どうせ買うなら縁起のいい日に」と思って日付を調べる人は多いはずです。そこで発売期間の31日ぶん、<strong>一粒万倍日・天赦日・寅の日・巳の日・大安</strong>を暦から計算しました。</p>
+      <div class="lead-box">
+        <p>結果は<strong>31日のうち14日（45.2%）が何らかの吉日</strong>。吉日が2つ重なる日は<strong>9月26日</strong>（一粒万倍日＋大安）と<strong>10月1日</strong>（天赦日＋一粒万倍日）の2日だけでした。</p>
+        <p>ただし<strong>その10月1日は、六曜では仏滅です。</strong></p>
+      </div>
+      <p>先に大事なことを書いておくと、<strong>買う日を変えても当たりやすさは1ミリも変わりません。</strong>理由は後半に書きます。それでも日付を決める材料にはなるので、まず正確な表を置きます。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>発売期間（9/16〜10/16）の全日カレンダー</h2>
+      <p>色がついている日が吉日、濃い色は吉日が2つ重なる日です。右端は同じ日に重なっている凶日です。</p>
+      <div class="table-scroll">
+        <table class="cal">
+          <thead><tr><th>日付</th><th>六曜</th><th>干支</th><th>吉日</th><th>重なる凶日</th></tr></thead>
+          <tbody>
+            <tr class="hit"><td class="num">9/16<small>(水)</small></td><td>先勝</td><td>癸巳</td><td>巳の日</td><td class="bad"></td></tr>
+            <tr><td class="num">9/17<small>(木)</small></td><td>友引</td><td>甲午</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">9/18<small>(金)</small></td><td>先負</td><td>乙未</td><td>―</td><td class="bad"></td></tr>
+            <tr class="hit"><td class="num">9/19<small>(土)</small></td><td>仏滅</td><td>丙申</td><td>一粒万倍日</td><td class="bad">仏滅</td></tr>
+            <tr class="hit"><td class="num">9/20<small>(日)</small></td><td>大安</td><td>丁酉</td><td>大安</td><td class="bad">不成就日</td></tr>
+            <tr><td class="num">9/21<small>(月)</small></td><td>赤口</td><td>戊戌</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">9/22<small>(火)</small></td><td>先勝</td><td>己亥</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">9/23<small>(水)</small></td><td>友引</td><td>庚子</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">9/24<small>(木)</small></td><td>先負</td><td>辛丑</td><td>―</td><td class="bad"></td></tr>
+            <tr class="hit"><td class="num">9/25<small>(金)</small></td><td>仏滅</td><td>壬寅</td><td>寅の日</td><td class="bad">仏滅</td></tr>
+            <tr class="hit hit--multi"><td class="num">9/26<small>(土)</small></td><td>大安</td><td>癸卯</td><td>一粒万倍日・大安</td><td class="bad"></td></tr>
+            <tr><td class="num">9/27<small>(日)</small></td><td>赤口</td><td>甲辰</td><td>―</td><td class="bad"></td></tr>
+            <tr class="hit"><td class="num">9/28<small>(月)</small></td><td>先勝</td><td>乙巳</td><td>巳の日</td><td class="bad">不成就日</td></tr>
+            <tr><td class="num">9/29<small>(火)</small></td><td>友引</td><td>丙午</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">9/30<small>(水)</small></td><td>先負</td><td>丁未</td><td>―</td><td class="bad"></td></tr>
+            <tr class="hit hit--multi"><td class="num">10/1<small>(木)</small></td><td>仏滅</td><td>戊申</td><td>天赦日・一粒万倍日</td><td class="bad">仏滅</td></tr>
+            <tr class="hit"><td class="num">10/2<small>(金)</small></td><td>大安</td><td>己酉</td><td>大安</td><td class="bad"></td></tr>
+            <tr><td class="num">10/3<small>(土)</small></td><td>赤口</td><td>庚戌</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">10/4<small>(日)</small></td><td>先勝</td><td>辛亥</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">10/5<small>(月)</small></td><td>友引</td><td>壬子</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">10/6<small>(火)</small></td><td>先負</td><td>癸丑</td><td>―</td><td class="bad">不成就日</td></tr>
+            <tr class="hit"><td class="num">10/7<small>(水)</small></td><td>仏滅</td><td>甲寅</td><td>寅の日</td><td class="bad">仏滅</td></tr>
+            <tr class="hit"><td class="num">10/8<small>(木)</small></td><td>大安</td><td>乙卯</td><td>大安</td><td class="bad"></td></tr>
+            <tr><td class="num">10/9<small>(金)</small></td><td>赤口</td><td>丙辰</td><td>―</td><td class="bad"></td></tr>
+            <tr class="hit"><td class="num">10/10<small>(土)</small></td><td>先勝</td><td>丁巳</td><td>巳の日</td><td class="bad"></td></tr>
+            <tr class="hit"><td class="num">10/11<small>(日)</small></td><td>先負</td><td>戊午</td><td>一粒万倍日</td><td class="bad">不成就日</td></tr>
+            <tr><td class="num">10/12<small>(月)</small></td><td>仏滅</td><td>己未</td><td>―</td><td class="bad">仏滅</td></tr>
+            <tr class="hit"><td class="num">10/13<small>(火)</small></td><td>大安</td><td>庚申</td><td>大安</td><td class="bad"></td></tr>
+            <tr class="hit"><td class="num">10/14<small>(水)</small></td><td>赤口</td><td>辛酉</td><td>一粒万倍日</td><td class="bad"></td></tr>
+            <tr><td class="num">10/15<small>(木)</small></td><td>先勝</td><td>壬戌</td><td>―</td><td class="bad"></td></tr>
+            <tr><td class="num">10/16<small>(金)</small></td><td>友引</td><td>癸亥</td><td>―</td><td class="bad"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">抽せん日の10月26日（月）は癸酉・赤口で、こちらも一粒万倍日にあたります。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>「吉日に買う」はほとんど絞り込みになっていない</h2>
+      <p>表を数えると、こうなります。</p>
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>発売期間の日数</th><td class="num">31日</td></tr>
+            <tr><th>何らかの吉日</th><td class="num">14日（45.2%）</td></tr>
+            <tr><th>うち凶日とも重なる日</th><td class="num">7日</td></tr>
+            <tr><th>吉日が2つ重なる日</th><td class="num">2日</td></tr>
+            <tr><th>吉日も凶日もない日</th><td class="num">15日</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>半分近くが吉日です。</strong>これは偶然ではなく、暦の作りからそうなります。寅の日と巳の日は12日に1度ずつ、大安は6日に1度、一粒万倍日は月によって月5〜6日あります。それぞれ別の規則で回っているので、足し合わせれば当然ひと月の半分近くが埋まります。</p>
+      <p>つまり「吉日に買う」という条件は、<strong>候補を31日から14日に減らすだけ</strong>です。縁起担ぎとしては十分でも、特別な日を選んだことにはなりにくい、というのが数えてみた感想です。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>10月1日は「最強開運日」であり「仏滅」でもある</h2>
+      <p>天赦日と一粒万倍日が重なる日は、よく<strong>最強開運日</strong>と紹介されます。2026年の発売期間では10月1日がそれにあたります。</p>
+      <p>ところが同じ10月1日は、六曜では<strong>仏滅</strong>です。10月1日だけの話ではありません。吉日14日のうち<strong>7日、ちょうど半分が凶日とも重なっていました。</strong></p>
+      <div class="table-scroll">
+        <table class="spec">
+          <tbody>
+            <tr><th>9月19日</th><td>一粒万倍日 ／ 仏滅</td></tr>
+            <tr><th>9月20日</th><td>大安 ／ 不成就日</td></tr>
+            <tr><th>9月25日</th><td>寅の日 ／ 仏滅</td></tr>
+            <tr><th>9月28日</th><td>巳の日 ／ 不成就日</td></tr>
+            <tr><th>10月1日</th><td>天赦日・一粒万倍日 ／ 仏滅</td></tr>
+            <tr><th>10月7日</th><td>寅の日 ／ 仏滅</td></tr>
+            <tr><th>10月11日</th><td>一粒万倍日 ／ 不成就日</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>なぜこうなるかというと、<strong>暦注は種類ごとにまったく別の規則で決まっている</strong>からです。六曜は旧暦の日付から、一粒万倍日は「月の十二支」と「日の十二支」の組み合わせから、天赦日は季節と日の干支から、寅の日・巳の日は日の十二支から決まります。お互いを見ていないので、重なるときは重なります。</p>
+      <p>どちらを上に置くかは決まっていません。<strong>同じ日を「最強開運日」と呼ぶ人と「仏滅」と呼ぶ人がいて、どちらも間違いではない</strong>、というのが正確なところです。</p>
+      <p>なので、吉日だけを並べたカレンダーを見て「この日しかない」と思う必要はありません。この記事の表で凶日の列も一緒に出しているのは、そのためです。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>六曜が10月11日で飛んでいるのは、間違いではありません</h2>
+      <p>表をよく見ると、10月10日が先勝で、次の10月11日が<strong>友引を飛ばして先負</strong>になっています。</p>
+      <p>これは<strong>六曜が旧暦の月替わりでリセットされる</strong>ためです。六曜はふだん先勝→友引→先負→仏滅→大安→赤口の順に回りますが、旧暦の1日になると順番を無視して決まった六曜から始まります。旧暦3月と9月の1日は<strong>先負</strong>です。</p>
+      <p>2026年10月11日は旧暦9月1日にあたるので、ここで先負に切り替わります。市販のカレンダーでも同じ並びになります。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>それでも、当たりやすさは変わりません</h2>
+      <p>ここまで日付の話をしてきましたが、<strong>買う日と当せんには関係がありません。</strong>理由は単純です。</p>
+      <p>ジャンボ宝くじの当せん番号は、<strong>抽せん日の10月26日に1回だけ決まります。</strong>9月16日に買っても10月16日に買っても、同じ1回の抽せんの結果で判定されます。買った日は抽せんに関与しません。</p>
+      <p>「吉日に買った人が高額当せんした」という話は当然出てきます。半分近くの日が吉日なのだから、当せん者の半分近くは吉日に買っているはずで、それは吉日の効果ではありません。</p>
+      <p>このサイトは数字選択式のくじでも同じ立場をとっていて、<strong>当たりやすくする方法は扱いません。</strong>できないからです。<a href="../yoku-deru-suji/">よく出る数字が次も出るわけではない話</a>も、同じ理由で書いています。</p>
+      <p>そのうえで、ひとつだけ意味のある操作があります。<strong>当せん金の分け方</strong>です。数字選択式のくじは同じ等級の当せん口数で山分けなので、人と同じ並びを避けると、当たったときの取り分が増えやすくなります。当たる確率は変わりませんが、分配は変えられます。</p>
+      <p><a class="btn btn--primary" href="../../">くじ番号メーカーで数字を選ぶ</a></p>
+    </div>
+
+    <div class="card card--article">
+      <h2>この表の出し方</h2>
+      <p>暦はすべて計算で出しています。市販のカレンダーを書き写したものではありません。</p>
+      <ul>
+        <li><strong>六曜</strong>: 旧暦の月と日から決定。旧暦は太陽と月の黄経から朔（新月）と中気を求めて組み立てています</li>
+        <li><strong>一粒万倍日</strong>: 節切りの月の十二支と、その日の十二支の組み合わせ</li>
+        <li><strong>天赦日</strong>: 季節（節切り）ごとに決まった干支の日。1年に5〜6日しかありません</li>
+        <li><strong>寅の日・巳の日</strong>: 日の十二支が寅・巳の日。12日に1度</li>
+        <li><strong>不成就日</strong>: 旧暦の月と日の組み合わせ</li>
+      </ul>
+      <p>季節の境目（節入り）は太陽の黄経から計算しているため、立春などをまたぐ日でも月の十二支を取り違えません。<strong>暦注の流派差の多くは、この節入りをどう扱うかの違いから生まれます。</strong></p>
+      <p>発売期間・抽せん日・当せん金は、2026年9月27日時点の<a href="https://www.takarakuji-official.jp/" target="_blank" rel="noopener">宝くじ公式サイト</a>の記載によります。</p>
+    </div>
+
+    <div class="card card--article">
+      <h2>よくある質問</h2>
+      <div class="faq-item">
+        <h3>ハロウィンジャンボミニも日程は同じですか？</h3>
+        <p>同じです。第1127回ハロウィンジャンボミニも発売は9月16日〜10月16日、抽せんは10月26日です。1等・前後賞合わせて4,000万円で、1枚300円も変わりません。</p>
+      </div>
+      <div class="faq-item">
+        <h3>売り切れることはありますか？</h3>
+        <p>ジャンボは発売枚数が決まっているため、売り場によっては期間の終わりを待たずに在庫がなくなることがあります。発売期間の最終日（10月16日）が最後の吉日というわけではないので、日付にこだわる場合は早めの吉日のほうが確実です。</p>
+      </div>
+      <div class="faq-item">
+        <h3>次のくじはいつですか？</h3>
+        <p>ハロウィンジャンボの発売が終わった翌日、10月17日から「まんぷくクーちゃんくじ」（第1130回・1枚200円・1等・前後賞合わせて5,000万円）が11月3日まで発売され、抽せんは11月6日です。年末ジャンボの日程は、公式サイトの発表をお待ちください。</p>
+      </div>
+      <div class="faq-item">
+        <h3>吉日に買った宝くじは、保管の仕方で運が変わりますか？</h3>
+        <p>変わりません。当せん番号は抽せんで決まり、券の保管場所は結果に関係しません。ただし<strong>紛失すると当せん金を受け取れません</strong>し、当せん金の請求期限は支払い開始日から1年間です。縁起よりも、なくさないことと期限のほうが実害があります。</p>
+      </div>
+    </div>
+
+    <div class="card card--article">
+      <h2>関連記事</h2>
+      <ul>
+        <li><a href="../yoku-deru-suji/">ロト6に「よく出る数字」はあるのか｜偏りは公平な抽せんでも必ず生まれる</a><br>
+          <span class="muted">公平な抽せんを2,000回×2,000セット試して、出現回数の差がどれくらい出るかを数えました。</span></li>
+        <li><a href="../loto-tosenkin-yamawake/">ロト6の1等が毎回ちがう金額になる理由｜当せん金は山分けで決まる</a><br>
+          <span class="muted">全6,096,454通りを数え上げて、誕生日で選ばれやすい並びの割合を出しました。</span></li>
+      </ul>
+    </div>
+
+  </article>
+
+  <footer class="app-footer">
+    <p><strong>宝くじは、買ったお金のうち当せん金として戻る割合が半分に満たない遊びです。</strong>余ったお金の範囲で、生活に影響しない金額を楽しんでください。</p>
+    <p>本サイトは個人が趣味で運営しています。当せんを保証するものではなく、購入を勧めるものでもありません。</p>
+    <p>ギャンブルがやめられずお困りの方へ: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000070789.html" target="_blank" rel="noopener">厚生労働省 ギャンブル依存症でお困りの方へ</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
