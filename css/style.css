@@ -319,3 +319,17 @@ code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-
   line-height: 1.65;
 }
 .code-block code { background: none; padding: 0; font-size: inherit; }
+
+/* 条文の引用。地の文と混ざらないように左に線を引く */
+.card--article blockquote {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--primary);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.card--article blockquote p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.8;
+}
